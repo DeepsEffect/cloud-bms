@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   //signOut user
-  const LogOut = () => {
+  const logOut = () => {
     return signOut(auth);
   };
 
@@ -70,7 +70,7 @@ const AuthProvider = ({ children }) => {
     // signInWithGithub,
     loginUser,
     setUser,
-    LogOut,
+    logOut,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

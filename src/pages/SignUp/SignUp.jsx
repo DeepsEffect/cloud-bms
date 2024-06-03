@@ -11,6 +11,7 @@ const SignUp = () => {
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
       .then(() => console.log("successfully signed in with Google"))
+      navigate('/')
       .catch((err) => {
         console.error(err);
       });
