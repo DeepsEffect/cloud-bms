@@ -1,16 +1,57 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const { signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const { signInWithGoogle, registerUser, setUser, user } = useAuth();
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
-      .then(() => console.log('successfully signed in with Google'))
+      .then(() => console.log("successfully signed in with Google"))
       .catch((err) => {
         console.error(err);
       });
   };
+
+  const handleCreateAccount = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    // console.log(name, email, password);
+    registerUser(email, password)
+      .then((userCredential) => {
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            // console.log(userCredential.user);
+            setUser({
+              ...user,
+              displayName: name,
+              photoURL: photo,
+            });
+            toast.success(
+              `"${userCredential.user.displayName}" Registered Successfully`
+            );
+            navigate("/");
+          })
+          .catch((error) => {
+            console.error("Error updating profile:", error.firebase);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.code.slice(5));
+      });
+  };
+
   return (
     <div className="flex text-slate-800 lg:mt-10">
       <div
@@ -56,7 +97,10 @@ const SignUp = () => {
               Or use email instead
             </div>
           </div>
-          <form className="flex flex-col items-stretch pt-3 md:pt-8">
+          <form
+            onSubmit={handleCreateAccount}
+            className="flex flex-col items-stretch pt-3 md:pt-8"
+          >
             <div className="flex flex-col pt-4">
               <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-primary-600">
                 <input
@@ -64,6 +108,14 @@ const SignUp = () => {
                   name="name"
                   className="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
                   placeholder="Name"
+                />
+              </div>
+              <div className="relative flex mt-4 overflow-hidden rounded-md border-2 transition focus-within:border-primary-600">
+                <input
+                  type="url"
+                  name="photo"
+                  className="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
+                  placeholder="photo url"
                 />
               </div>
             </div>
@@ -83,7 +135,7 @@ const SignUp = () => {
                   type="password"
                   name="password"
                   className="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none"
-                  placeholder="Password (minimum 8 characters)"
+                  placeholder="Password (minimum 6 characters)"
                 />
               </div>
             </div>

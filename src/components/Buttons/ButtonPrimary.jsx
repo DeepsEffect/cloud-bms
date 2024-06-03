@@ -5,7 +5,7 @@ export const ButtonPrimary = ({ content, size }) => {
   return (
     <Button
       size={size}
-      className="flex items-center bg-primary-500 transition-colors"
+      className="flex text-sm items-center bg-primary-500 transition-colors"
     >
       {content}
     </Button>
