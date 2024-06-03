@@ -1,11 +1,12 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, loginUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignInWithGoogle = (e) => {
     e.preventDefault();
@@ -20,10 +21,32 @@ const Login = () => {
       });
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    // console.log(email, password);
+    loginUser(email, password);
+    loginUser(email, password)
+      .then((userCredential) => {
+        // console.log(userCredential.user);
+        toast.success(`"${userCredential.user.displayName}" Login Successful`);
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.code);
+      });
+  };
+
   return (
     <div className="flex items-center mt-10 overflow-hidden px-2">
       {/* <!-- Login --> */}
-      <form className="relative flex w-96 flex-col space-y-5 rounded-lg border bg-white px-5 py-10 shadow-xl sm:mx-auto">
+      <form
+        onSubmit={handleLogin}
+        className="relative flex w-96 flex-col space-y-5 rounded-lg border bg-white px-5 py-10 shadow-xl sm:mx-auto"
+      >
         <div className="-z-10 absolute top-4 left-1/2 h-full w-5/6 -translate-x-1/2 rounded-lg bg-primary-600 sm:-right-10 sm:top-auto sm:left-auto sm:w-full sm:translate-x-0"></div>
         <div className="mx-auto mb-2 space-y-3">
           <h1 className="text-center text-3xl font-bold text-gray-700">
