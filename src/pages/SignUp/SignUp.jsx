@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../hooks/useAuth";
+
 const SignUp = () => {
+  const { signInWithGoogle } = useAuth();
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+      .then(() => console.log('successfully signed in with Google'))
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   return (
     <div className="flex text-slate-800 lg:mt-10">
       <div
@@ -31,11 +41,17 @@ const SignUp = () => {
               Login here
             </Link>
           </p>
-          <button className="-2 mt-8 flex items-center justify-center rounded-md border px-4 py-1 outline-none ring-gray-400 ring-offset-2 transition hover:border-transparent hover:bg-black hover:text-white focus:ring-2">
+          <button
+            onClick={handleSignInWithGoogle}
+            className="-2 mt-8 flex items-center justify-center rounded-md border px-4 py-1 outline-none ring-gray-400 ring-offset-2 transition hover:border-transparent hover:bg-black hover:text-white focus:ring-2"
+          >
             <FcGoogle className="mr-2" />
             Get started with Google
           </button>
-          <div className="relative mt-8 flex h-px place-items-center bg-gray-200">
+          <div
+            onClick={handleSignInWithGoogle}
+            className="relative mt-8 flex h-px place-items-center bg-gray-200"
+          >
             <div className="absolute left-1/2 h-6 -translate-x-1/2 bg-white px-4 text-center text-sm text-gray-500">
               Or use email instead
             </div>
