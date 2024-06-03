@@ -5,13 +5,17 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import toast from "react-hot-toast";
 
-const SignUp = () => {
+const SignUp = (e) => {
+  e.preventDefault();
   const navigate = useNavigate();
   const { signInWithGoogle, registerUser, setUser, user } = useAuth();
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
-      .then(() => console.log("successfully signed in with Google"))
-      navigate('/')
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        toast.success("successfully Signed In with Google");
+        navigate("/");
+      })
       .catch((err) => {
         console.error(err);
       });

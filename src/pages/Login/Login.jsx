@@ -1,6 +1,25 @@
-import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignInWithGoogle = (e) => {
+    e.preventDefault();
+    signInWithGoogle()
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        toast.success("Successfully Signed In with Google");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <div className="flex items-center mt-10 overflow-hidden px-2">
       {/* <!-- Login --> */}
@@ -12,7 +31,13 @@ const Login = () => {
           </h1>
           <p className="text-gray-500">Sign in to access your account</p>
         </div>
-
+        <button
+          onClick={handleSignInWithGoogle}
+          className="-2 mt-8 flex items-center justify-center rounded-md border px-4 py-1 outline-none ring-gray-400 ring-offset-2 transition hover:border-transparent hover:bg-black hover:text-white focus:ring-2"
+        >
+          <FcGoogle className="mr-2" />
+          Get started with Google
+        </button>
         <div>
           <div className="relative mt-2 w-full">
             <input
@@ -35,7 +60,10 @@ const Login = () => {
           </div>
         </div>
         <div className="flex w-full items-center">
-          <button type="submit" className="shrink-0 inline-block w-36 rounded-lg bg-primary-600 py-3 font-bold text-white">
+          <button
+            type="submit"
+            className="shrink-0 inline-block w-36 rounded-lg bg-primary-600 py-3 font-bold text-white"
+          >
             Login
           </button>
           <a
@@ -48,7 +76,7 @@ const Login = () => {
         <p className="text-center text-gray-600">
           Don&apos;t have an account?
           <Link
-            to={'/signUp'}
+            to={"/signUp"}
             className="whitespace-nowrap font-semibold text-gray-900 hover:underline"
           >
             Sign up

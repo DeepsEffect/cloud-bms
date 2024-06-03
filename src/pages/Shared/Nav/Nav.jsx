@@ -11,12 +11,13 @@ import {
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ButtonPrimary from "../../../components/Buttons/ButtonPrimary";
 import useAuth from "../../../hooks/useAuth";
 import { FaUser } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import toast from "react-hot-toast";
+import './nav.css'
 
 function NavList() {
   const { user, logOut } = useAuth();
@@ -31,7 +32,7 @@ function NavList() {
   };
 
   return (
-    <ul className="font-body text-text-50 text-md font-semibold my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="font-body text-text-50 text-md font-bold my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <NavLink to={"/"} className="p-1 font-medium">
         <p className="flex items-center hover:text-primary-500 transition-colors">
           Home
@@ -117,12 +118,12 @@ const Nav = () => {
   return (
     <Navbar className="mx-auto container px-6 py-3">
       <div className="flex items-center justify-between text-blue-gray-900">
-        <NavLink
+        <Link
           to={"/"}
           className="mr-4 cursor-pointer py-1.5 font-heading font-bold text-xl"
         >
           Cloud-MBS
-        </NavLink>
+        </Link>
         <div className="hidden lg:block">
           <NavList />
         </div>
