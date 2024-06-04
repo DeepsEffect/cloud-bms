@@ -38,9 +38,9 @@ function NavList() {
           Home
         </p>
       </NavLink>
-      <NavLink to={"/apartments"} className="p-1 font-medium">
+      <NavLink to={"/apartment"} className="p-1 font-medium">
         <p className="flex items-center hover:text-primary-500 transition-colors">
-          Apartments
+          Apartment
         </p>
       </NavLink>
       {user ? (
