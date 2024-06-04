@@ -6,8 +6,19 @@ import {
   CardFooter,
   Button,
 } from "@material-tailwind/react";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const ApartmentCard = ({ room }) => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const handleAgreement = (_id) => {
+    if (!user) {
+      return navigate("/login");
+    }
+    console.log(_id);
+  };
+
   return (
     <Card className="mt-6 lg:w-96">
       <CardHeader color="blue-gray" className="relative h-56">
@@ -47,6 +58,7 @@ const ApartmentCard = ({ room }) => {
       </CardBody>
       <CardFooter className="pt-0 w-full">
         <Button
+          onClick={() => handleAgreement(room._id)}
           size="sm"
           className="w-full text-sm bg-primary-500 hover:bg-secondary"
         >
