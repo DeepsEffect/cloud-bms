@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import Coupon from "../Coupon/Coupon";
 import AboutTheBuilding from "./AboutTheBuilding/AboutTheBuilding";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
           <Banner />
           <AboutTheBuilding />
+          <Coupon />
         </div>
     );
 };
