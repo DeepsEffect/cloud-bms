@@ -40,6 +40,11 @@ const ApartmentCard = ({ room }) => {
       })
       .catch((err) => {
         console.error(err);
+        if (err.response && err.response.data.message) {
+          toast.error(err.response.data.message);
+        } else {
+          toast.error("An error occurred. Please try again.");
+        }
       });
   };
 
