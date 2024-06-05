@@ -8,16 +8,39 @@ import {
 } from "@material-tailwind/react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const ApartmentCard = ({ room }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  
+  const axiosSecure = useAxiosSecure();
+
   const handleAgreement = (_id) => {
     if (!user) {
       return navigate("/login");
     }
-    console.log(_id);
+    const agreementData = {
+      userId: _id,
+      userName: user.displayName,
+      userEmail: user.email,
+      floor_no: room.floor_no,
+      block_name: room.block_name,
+      apartment_no: room.apartment_no,
+      rent: room.rent,
+    };
+    // console.log(agreementData);
+    axiosSecure
+      .post("/agreement", agreementData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success("agreement added successfully");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
