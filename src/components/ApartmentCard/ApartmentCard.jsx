@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const ApartmentCard = ({ room }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  
   const handleAgreement = (_id) => {
     if (!user) {
       return navigate("/login");

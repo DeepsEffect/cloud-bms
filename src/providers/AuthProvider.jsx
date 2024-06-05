@@ -10,6 +10,7 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
 // import { GithubAuthProvider } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import axios from "axios";
 
 //create context
 export const AuthContext = createContext(null);
@@ -44,10 +45,28 @@ const AuthProvider = ({ children }) => {
   //   return signInWithPopup(auth, githubProvider);
   // };
 
+  // save user function
+  const saveUser = async (user) => {
+    const currentUser = {
+      email: user?.email,
+      role: "user",
+      status: "verified",
+    };
+    const { data } = axios
+      .put(`${import.meta.env.VITE_URL}/user`, currentUser)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
+    return data;
+  };
+
   //observing user
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      // save user to db
+      if (currentUser) {
+        saveUser(currentUser);
+      }
       setLoading(false);
       console.log("Current User: ", currentUser);
     });
