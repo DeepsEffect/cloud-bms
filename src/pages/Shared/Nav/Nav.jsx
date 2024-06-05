@@ -17,7 +17,7 @@ import useAuth from "../../../hooks/useAuth";
 import { FaUser } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import toast from "react-hot-toast";
-import './nav.css'
+import "./nav.css";
 
 function NavList() {
   const { user, logOut } = useAuth();
@@ -63,9 +63,11 @@ function NavList() {
               </MenuItem>
               <MenuItem className="flex items-center gap-2">
                 <MdSpaceDashboard />
-                <Typography variant="small" className="font-medium">
-                  Dashboard
-                </Typography>
+                <Link to={"/dashboard/myProfile"}>
+                  <Typography variant="small" className="font-medium">
+                    Dashboard
+                  </Typography>
+                </Link>
               </MenuItem>
 
               <hr className="my-2 border-blue-gray-50" />
