@@ -28,6 +28,8 @@ const ApartmentCard = ({ room }) => {
       block_name: room.block_name,
       apartment_no: room.apartment_no,
       rent: room.rent,
+      status: "pending",
+      agreementDate: new Date(),
     };
     // console.log(agreementData);
     axiosSecure
