@@ -54,7 +54,9 @@ const AuthProvider = ({ children }) => {
     };
     const { data } = axios
       .put(`${import.meta.env.VITE_URL}/user`, currentUser)
-      .then((res) => console.log(res.data))
+      .then(() => {
+        // console.log(res.data);
+      })
       .catch((err) => console.error(err));
     return data;
   };
