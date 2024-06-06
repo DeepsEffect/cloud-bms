@@ -10,7 +10,7 @@ const AdminNavMenu = () => {
   return (
     <>
       <NavLink
-        to={"myProfile/admin"}
+        to={"myProfile"}
         className={({ isActive }) =>
           isActive
             ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"

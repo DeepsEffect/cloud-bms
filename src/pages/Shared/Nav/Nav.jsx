@@ -30,7 +30,6 @@ function NavList() {
         console.error(error);
       });
   };
-  const role = "" || "";
   return (
     <ul className="font-body text-text-50 text-md font-bold my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <NavLink to={"/"} className="p-1 font-medium">
@@ -63,7 +62,7 @@ function NavList() {
               </MenuItem>
               <MenuItem className="flex items-center gap-2">
                 <MdSpaceDashboard />
-                <Link to={`/dashboard/myProfile/${role}`}>
+                <Link to={`/dashboard/myProfile`}>
                   <Typography variant="small" className="font-medium">
                     Dashboard
                   </Typography>

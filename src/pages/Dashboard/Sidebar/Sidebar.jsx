@@ -10,11 +10,11 @@ import UserNavMenu from "./NavMenu/UserNavMenu";
 import MemberNavMenu from "./NavMenu/MemberNavMenu";
 import AdminNavMenu from "./NavMenu/AdminNavMenu";
 import { FaPowerOff } from "react-icons/fa";
+import useRole from "../../../hooks/useRole";
 
 const Sidebar = () => {
-  const user = true;
-  const member = false;
-  const admin = false;
+  const [role] = useRole();
+  console.log(role);
   return (
     <Card className="lg:h-[calc(100vh-2rem)] w-full max-w-[20rem] lg:p-4 shadow-xl shadow-blue-gray-900/5">
       <Link to={"/"} className="mb-2 p-4">
@@ -24,9 +24,9 @@ const Sidebar = () => {
       </Link>
 
       <List>
-        {user && <UserNavMenu />}
-        {member && <MemberNavMenu />}
-        {admin && <AdminNavMenu />}
+        {role === "user" && <UserNavMenu />}
+        {role === "member" && <MemberNavMenu />}
+        {role === "admin" && <AdminNavMenu />}
         <hr />
         <ListItem className="font-bold">
           <ListItemPrefix>
