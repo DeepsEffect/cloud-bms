@@ -30,7 +30,7 @@ function NavList() {
         console.error(error);
       });
   };
-
+  const role = "" || "";
   return (
     <ul className="font-body text-text-50 text-md font-bold my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <NavLink to={"/"} className="p-1 font-medium">
@@ -63,7 +63,7 @@ function NavList() {
               </MenuItem>
               <MenuItem className="flex items-center gap-2">
                 <MdSpaceDashboard />
-                <Link to={"/dashboard/myProfile"}>
+                <Link to={`/dashboard/myProfile/${role}`}>
                   <Typography variant="small" className="font-medium">
                     Dashboard
                   </Typography>
@@ -117,6 +117,7 @@ const Nav = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
+
   return (
     <Navbar className="mx-auto container px-6 py-3">
       <div className="flex items-center justify-between text-blue-gray-900">

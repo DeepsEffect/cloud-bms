@@ -41,9 +41,29 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: 'myProfile',
-        element: <MyProfile />
-      }
+        path: "myProfile",
+        element: (
+          <PrivateRoute>
+            <MyProfile role={"user"} />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myProfile/member",
+        element: (
+          <PrivateRoute>
+            <MyProfile role={"member"} />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myProfile/admin",
+        element: (
+          <PrivateRoute>
+            <MyProfile role={"admin"} />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
