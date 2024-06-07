@@ -26,7 +26,7 @@ const AdminNavMenu = () => {
       </NavLink>
       {/* manage users*/}
       <NavLink
-        to={"manageUsers"}
+        to={"manageMembers"}
         className={({ isActive }) =>
           isActive
             ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
@@ -37,7 +37,7 @@ const AdminNavMenu = () => {
           <ListItemPrefix>
             <FaUsers className="h-5 w-5" />
           </ListItemPrefix>
-          Manage Users
+          Manage Members
         </ListItem>
       </NavLink>
       {/* make announcement */}

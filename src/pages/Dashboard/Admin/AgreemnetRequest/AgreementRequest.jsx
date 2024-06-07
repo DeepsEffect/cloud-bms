@@ -4,6 +4,7 @@ import { IconButton, Spinner, Tooltip } from "@material-tailwind/react";
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import DashboardTitle from "../../Common/DashboardTitle/DashboardTitle";
 
 const AgreementRequest = () => {
   const axiosSecure = useAxiosSecure();
@@ -77,9 +78,7 @@ const AgreementRequest = () => {
 
   return (
     <div>
-      <section className="min-h-32 bg-accent-500 text-center font-bold text-white flex justify-center items-center text-xl font-heading">
-        <h2>Total Agreement requests: {agreements.length}</h2>
-      </section>
+      <DashboardTitle title={'total agreements'} measure={agreements} />
       {/* table */}
       <section className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md h-full w-full overflow-scroll lg:overflow-hidden">
         <table className="w-full min-w-max table-auto text-left ">
@@ -111,12 +110,11 @@ const AgreementRequest = () => {
                 agreementDate,
                 apartment_no: room_no,
                 status,
-                userId,
                 _id,
               }) => (
                 //   index
                 <tr
-                  key={userId}
+                  key={_id}
                   className="even:bg-blue-gray-50/50 overflow-hidden"
                 >
                   <td className="p-4">
