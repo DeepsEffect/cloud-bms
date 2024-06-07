@@ -3,6 +3,7 @@ import DashboardTitle from "../../Common/DashboardTitle/DashboardTitle";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { IconButton, Spinner, Tooltip } from "@material-tailwind/react";
 import { IoMdRemoveCircle } from "react-icons/io";
+import toast from "react-hot-toast";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,11 +21,28 @@ const ManageMembers = () => {
   });
   console.log(members);
 
+  // remove member
+  const handleRemoveMember = (_id) => {
+    // console.log(_id);
+    axiosSecure
+      .patch(`/members/${_id}`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          toast.success("Member is removed");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
-  if(error){
-    return <p>Error: {error}</p>
+  if (error) {
+    return <p>Error: {error}</p>;
   }
   const TABLE_HEAD = ["Name", "Email", "Role", ""];
   return (
@@ -70,7 +88,10 @@ const ManageMembers = () => {
                 </td>
                 <td className="p-4">
                   <Tooltip content="remove">
-                    <IconButton className="bg-red-600">
+                    <IconButton
+                      onClick={() => handleRemoveMember(_id)}
+                      className="bg-red-600"
+                    >
                       <IoMdRemoveCircle className="text-xl" />
                     </IconButton>
                   </Tooltip>

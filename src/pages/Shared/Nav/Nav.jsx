@@ -58,17 +58,22 @@ function NavList() {
                 <FaUser />
                 <div className="font-medium">{user.displayName}</div>
               </MenuItem>
-              <MenuItem className="flex items-center gap-2">
-                <MdSpaceDashboard />
-                <Link to={`/dashboard/myProfile`}>
+              
+              <Link to={`/dashboard/myProfile`}>
+                <MenuItem className="flex items-center gap-2">
+                  <MdSpaceDashboard />
                   <Typography variant="small" className="font-medium">
                     Dashboard
                   </Typography>
-                </Link>
-              </MenuItem>
+                </MenuItem>
+              </Link>
 
               <hr className="my-2 border-blue-gray-50" />
-              <MenuItem className="flex items-center gap-2 ">
+
+              <MenuItem
+                onClick={handleSignOut}
+                className="flex items-center gap-2 "
+              >
                 <svg
                   width="16"
                   height="14"
@@ -81,11 +86,7 @@ function NavList() {
                     fill="#90A4AE"
                   />
                 </svg>
-                <Typography
-                  onClick={handleSignOut}
-                  variant="small"
-                  className="font-medium"
-                >
+                <Typography variant="small" className="font-medium">
                   Sign Out
                 </Typography>
               </MenuItem>
