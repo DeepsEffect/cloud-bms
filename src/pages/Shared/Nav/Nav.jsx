@@ -58,7 +58,7 @@ function NavList() {
                 <FaUser />
                 <div className="font-medium">{user.displayName}</div>
               </MenuItem>
-              
+
               <Link to={`/dashboard/myProfile`}>
                 <MenuItem className="flex items-center gap-2">
                   <MdSpaceDashboard />

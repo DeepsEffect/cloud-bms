@@ -1,3 +1,4 @@
+import { Spinner } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import AdminProfile from "../Admin/AdminProfile/AdminProfile";
@@ -7,6 +8,9 @@ import AgreementInfo from "./AgreementInfo/AgreementInfo";
 const MyProfile = () => {
   const [role] = useRole();
   const { user, loading } = useAuth();
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div>
       {/* profile info */}
@@ -24,12 +28,13 @@ const MyProfile = () => {
             </span>
           </h2>
           <h2 className="font-bold text-text-50 text-xl">{user?.email}</h2>
-          {user && (
-            <p className="font-bold text-text-50 text-xl">Agreement: </p>
-          )}
         </div>
       </section>
-      {role === "user" || role === "member" ? <AgreementInfo /> : <AdminProfile />}
+      {role === "user" || role === "member" ? (
+        <AgreementInfo />
+      ) : (
+        <AdminProfile />
+      )}
     </div>
   );
 };
