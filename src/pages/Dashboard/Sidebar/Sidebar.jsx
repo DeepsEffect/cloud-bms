@@ -4,6 +4,7 @@ import {
   ListItem,
   ListItemPrefix,
   Button,
+  Spinner,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import UserNavMenu from "./NavMenu/UserNavMenu";
@@ -11,10 +12,24 @@ import MemberNavMenu from "./NavMenu/MemberNavMenu";
 import AdminNavMenu from "./NavMenu/AdminNavMenu";
 import { FaPowerOff } from "react-icons/fa";
 import useRole from "../../../hooks/useRole";
+import { useEffect } from "react";
+import useAuth from "../../../hooks/useAuth";
 
 const Sidebar = () => {
-  const [role] = useRole();
+  const [role, isLoading, refetch] = useRole();
+  const { user, loading } = useAuth();
   console.log(role);
+  // refetching when user changes
+  useEffect(() => {
+    if (user) {
+      refetch();
+    }
+  }, [user, refetch]);
+
+  if (isLoading || loading) {
+    return <Spinner />;
+  }
+
   return (
     <Card className="lg:h-[calc(100vh-2rem)] w-full max-w-[20rem] lg:p-4 shadow-xl shadow-blue-gray-900/5">
       <Link to={"/"} className="mb-2 p-4">

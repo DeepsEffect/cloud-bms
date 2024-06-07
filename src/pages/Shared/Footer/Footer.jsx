@@ -26,7 +26,7 @@ const Footer = () => {
         </a>
       </nav>
       <p className="py-10 text-center text-gray-300">
-        © 2024 Cloud-MBS | All Rights Reserved
+        © 2024 Cloud-BMS | All Rights Reserved
       </p>
     </footer>
   );

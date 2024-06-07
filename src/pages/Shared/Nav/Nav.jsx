@@ -56,9 +56,7 @@ function NavList() {
             <MenuList>
               <MenuItem className="flex items-center gap-2">
                 <FaUser />
-                <Typography variant="small" className="font-medium">
-                  {user.displayName}
-                </Typography>
+                <div className="font-medium">{user.displayName}</div>
               </MenuItem>
               <MenuItem className="flex items-center gap-2">
                 <MdSpaceDashboard />

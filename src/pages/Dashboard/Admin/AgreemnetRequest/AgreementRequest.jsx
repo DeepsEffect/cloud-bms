@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import {
-  IconButton,
-  Spinner,
-  Tooltip,
-  Typography,
-} from "@material-tailwind/react";
+import { IconButton, Spinner, Tooltip, div } from "@material-tailwind/react";
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import toast from "react-hot-toast";
@@ -87,13 +82,12 @@ const AgreementRequest = () => {
                   key={idx}
                   className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
                 >
-                  <Typography
-                    variant="small"
+                  <div
                     color="blue-gray"
                     className="font-normal leading-none opacity-70"
                   >
                     {head}
-                  </Typography>
+                  </div>
                 </th>
               ))}
             </tr>
@@ -118,76 +112,50 @@ const AgreementRequest = () => {
                   className="even:bg-blue-gray-50/50 overflow-hidden"
                 >
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
+                    <div color="blue-gray" className="font-normal">
                       {userName}
-                    </Typography>
+                    </div>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
+                    <div color="blue-gray" className="font-normal">
                       {userEmail}
-                    </Typography>
+                    </div>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
+                    <div color="blue-gray" className="font-normal">
                       {floor_no}
-                    </Typography>
+                    </div>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
+                    <div color="blue-gray" className="font-normal">
                       {block_name}
-                    </Typography>
+                    </div>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
+                    <div color="blue-gray" className="font-normal">
                       {room_no}
-                    </Typography>
+                    </div>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
+                    <div color="blue-gray" className="font-normal">
                       ${rent}
-                    </Typography>
+                    </div>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
+                    <div color="blue-gray" className="font-normal">
                       {new Date(agreementDate).toLocaleDateString()}
-                    </Typography>
+                    </div>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      variant="small"
-                      color={status === "pending" ? "orange" : "green"}
-                      className="font-normal"
+                    <div
+                      className={`font-normal ${
+                        status === "pending"
+                          ? "text-orange-600"
+                          : "text-green-600"
+                      }`}
                     >
                       {status}
-                    </Typography>
+                    </div>
                   </td>
                   <td>
                     <Tooltip content="approve">
