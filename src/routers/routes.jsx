@@ -9,6 +9,7 @@ import Dashboard from "../layouts/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import Announcement from "../pages/Dashboard/Announcement/Announcement";
+import AgreementRequest from "../pages/Dashboard/Admin/AgreemnetRequest/AgreementRequest";
 
 export const router = createBrowserRouter([
   {
@@ -50,8 +51,13 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'announcement',
-        element: <Announcement />
+        path: "announcement",
+        element: <Announcement />,
+      },
+      // admin routes
+      {
+        path: 'agreementRequest',
+        element: <AgreementRequest />
       }
     ],
   },

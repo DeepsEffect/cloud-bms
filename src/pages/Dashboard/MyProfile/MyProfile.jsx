@@ -1,5 +1,6 @@
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
+import AdminProfile from "../Admin/AdminProfile/AdminProfile";
 import AgreementInfo from "./AgreementInfo/AgreementInfo";
 
 /* eslint-disable react/prop-types */
@@ -28,7 +29,7 @@ const MyProfile = () => {
           )}
         </div>
       </section>
-      <AgreementInfo />
+      {role === "user" || role === "member" ? <AgreementInfo /> : <AdminProfile />}
     </div>
   );
 };

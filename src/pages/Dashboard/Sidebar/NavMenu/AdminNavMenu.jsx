@@ -58,10 +58,10 @@ const AdminNavMenu = () => {
       </NavLink>
       {/* agreement requests */}
       <NavLink
-        to={"agreementRequests"}
+        to={"agreementRequest"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
+            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600 "
             : "font-semibold text-text-50"
         }
       >
