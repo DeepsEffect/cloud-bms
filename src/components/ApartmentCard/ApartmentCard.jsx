@@ -5,21 +5,32 @@ import {
   CardBody,
   CardFooter,
   Button,
+  Spinner,
 } from "@material-tailwind/react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useRole from "../../hooks/useRole";
 
 const ApartmentCard = ({ room }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [role, isLoading] = useRole();
 
+  if (isLoading) {
+    return <Spinner />;
+  }
   const handleAgreement = (_id) => {
+    if (role === "admin") {
+      toast.error("Admin can't agreement :3");
+      return;
+    }
     if (!user) {
       return navigate("/login");
     }
+
     const agreementData = {
       userId: _id,
       userName: user.displayName,

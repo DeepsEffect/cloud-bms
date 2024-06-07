@@ -8,13 +8,41 @@ import {
 } from "@material-tailwind/react";
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const AgreementRequest = () => {
   const axiosSecure = useAxiosSecure();
+  //   handle approve requests
+
+  const handleApproveRequest = (_id, userEmail) => {
+    // console.log(_id);
+    axiosSecure
+      .patch(`/agreements/${_id}`, { userEmail: userEmail })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          toast.success(" Request Approved");
+          refetch()
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  //   const handleApproveRequest = useMutation({
+  //     mutationFn: async (_id) => {
+  //       const res = axiosSecure.patch(`/agreements/${_id}`);
+  //       return res.data;
+  //     },
+  //   });
+
+  // get agreements data
   const {
     data: agreements = [],
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["agreement"],
     queryFn: async () => {
@@ -30,7 +58,7 @@ const AgreementRequest = () => {
   if (error) {
     return <div className="text-red-500">Error: {error.message}</div>;
   }
-  console.log(agreements);
+  //   console.log(agreements);
   const TABLE_HEAD = [
     "Name",
     "Email",
@@ -39,9 +67,11 @@ const AgreementRequest = () => {
     "Room no",
     "Rent",
     "Request Date",
+    "Status",
     "",
     "",
   ];
+
   return (
     <div>
       <section className="min-h-32 bg-accent-500 text-center font-bold text-white flex justify-center items-center text-xl font-heading">
@@ -68,19 +98,19 @@ const AgreementRequest = () => {
         </thead>
         <tbody>
           {agreements.map(
-            (
-              {
-                userName,
-                userEmail,
-                floor_no,
-                block_name,
-                rent,
-                agreementDate,
-                apartment_no: room_no,
-                userId,
-              },
-              index
-            ) => (
+            ({
+              userName,
+              userEmail,
+              floor_no,
+              block_name,
+              rent,
+              agreementDate,
+              apartment_no: room_no,
+              status,
+              userId,
+              _id,
+            }) => (
+              //   index
               <tr key={userId} className="even:bg-blue-gray-50/50">
                 <td className="p-4">
                   <Typography
@@ -145,9 +175,21 @@ const AgreementRequest = () => {
                     {new Date(agreementDate).toLocaleDateString()}
                   </Typography>
                 </td>
+                <td className="p-4">
+                  <Typography
+                    variant="small"
+                    color={status === "pending" ? "orange" : "green"}
+                    className="font-normal"
+                  >
+                    {status}
+                  </Typography>
+                </td>
                 <td>
                   <Tooltip content="approve">
-                    <IconButton color="green">
+                    <IconButton
+                      onClick={() => handleApproveRequest(_id, userEmail)}
+                      color="green"
+                    >
                       <FaCheck />
                     </IconButton>
                   </Tooltip>
