@@ -17,7 +17,7 @@ import useAuth from "../../../hooks/useAuth";
 
 const Sidebar = () => {
   const [role, isLoading, refetch] = useRole();
-  const { user, loading } = useAuth();
+  const { user, loading, logOut } = useAuth();
   console.log(role);
   // refetching when user changes
   useEffect(() => {
@@ -43,7 +43,7 @@ const Sidebar = () => {
         {role === "member" && <MemberNavMenu />}
         {role === "admin" && <AdminNavMenu />}
         <hr />
-        <ListItem className="font-bold">
+        <ListItem onClick={logOut} className="font-bold">
           <ListItemPrefix>
             <FaPowerOff className="h-5 w-5" />
           </ListItemPrefix>

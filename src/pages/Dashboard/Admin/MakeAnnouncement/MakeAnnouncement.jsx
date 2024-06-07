@@ -30,7 +30,7 @@ const MakeAnnouncement = () => {
 
   return (
     <div>
-      <DashboardTitle title={"make announcement"} />
+      <DashboardTitle title={"add an announcement"} />
       <form
         onSubmit={handleSubmitAnnouncement}
         className="w-[400px] mx-auto mt-10 space-y-10"

@@ -12,6 +12,7 @@ import Announcement from "../pages/Dashboard/Announcement/Announcement";
 import AgreementRequest from "../pages/Dashboard/Admin/AgreemnetRequest/AgreementRequest";
 import ManageMembers from "../pages/Dashboard/Admin/ManageMembers/ManageMembers";
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement/MakeAnnouncement";
+import ManageCoupon from "../pages/Dashboard/Admin/ManageCoupon/ManageCoupon";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
         path: "makeAnnouncement",
         element: <MakeAnnouncement />,
       },
+      {
+        path: 'manageCoupons',
+        element: <ManageCoupon />
+      }
     ],
   },
   {
