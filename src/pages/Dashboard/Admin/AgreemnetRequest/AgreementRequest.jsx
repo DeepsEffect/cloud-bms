@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { IconButton, Spinner, Tooltip, div } from "@material-tailwind/react";
+import { IconButton, Spinner, Tooltip } from "@material-tailwind/react";
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import toast from "react-hot-toast";
@@ -25,14 +25,22 @@ const AgreementRequest = () => {
       });
   };
 
-  //   const handleApproveRequest = useMutation({
-  //     mutationFn: async (_id) => {
-  //       const res = axiosSecure.patch(`/agreements/${_id}`);
-  //       return res.data;
-  //     },
-  //   });
+  // Handle reject requests
+  const handleRejectRequest = (_id) => {
+    axiosSecure
+      .patch(`/agreements/${_id}/reject`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          toast.success("Request Rejected");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
-  // get agreements data
   const {
     data: agreements = [],
     isLoading,
@@ -151,7 +159,11 @@ const AgreementRequest = () => {
                       className={`font-normal ${
                         status === "pending"
                           ? "text-orange-600"
-                          : "text-green-600"
+                          : status === "approved"
+                          ? "text-green-600"
+                          : status === "rejected"
+                          ? "text-red-600"
+                          : ""
                       }`}
                     >
                       {status}
@@ -169,7 +181,10 @@ const AgreementRequest = () => {
                   </td>
                   <td>
                     <Tooltip content="reject">
-                      <IconButton color="red">
+                      <IconButton
+                        onClick={() => handleRejectRequest(_id)}
+                        color="red"
+                      >
                         <FaXmark className="font-bold text-xl" />
                       </IconButton>
                     </Tooltip>
