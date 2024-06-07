@@ -22,7 +22,7 @@ const AgreementRequest = () => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
           toast.success(" Request Approved");
-          refetch()
+          refetch();
         }
       })
       .catch((err) => {
@@ -77,135 +77,141 @@ const AgreementRequest = () => {
       <section className="min-h-32 bg-accent-500 text-center font-bold text-white flex justify-center items-center text-xl font-heading">
         <h2>Total Agreement requests: {agreements.length}</h2>
       </section>
-      <table className="w-full min-w-max table-auto text-left">
-        <thead>
-          <tr>
-            {TABLE_HEAD.map((head, idx) => (
-              <th
-                key={idx}
-                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
-              >
-                <Typography
-                  variant="small"
-                  color="blue-gray"
-                  className="font-normal leading-none opacity-70"
+      {/* table */}
+      <section className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md h-full w-full overflow-scroll lg:overflow-hidden">
+        <table className="w-full min-w-max table-auto text-left ">
+          <thead>
+            <tr>
+              {TABLE_HEAD.map((head, idx) => (
+                <th
+                  key={idx}
+                  className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
                 >
-                  {head}
-                </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {agreements.map(
-            ({
-              userName,
-              userEmail,
-              floor_no,
-              block_name,
-              rent,
-              agreementDate,
-              apartment_no: room_no,
-              status,
-              userId,
-              _id,
-            }) => (
-              //   index
-              <tr key={userId} className="even:bg-blue-gray-50/50">
-                <td className="p-4">
                   <Typography
                     variant="small"
                     color="blue-gray"
-                    className="font-normal"
+                    className="font-normal leading-none opacity-70"
                   >
-                    {userName}
+                    {head}
                   </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {userEmail}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {floor_no}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {block_name}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {room_no}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    ${rent}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {new Date(agreementDate).toLocaleDateString()}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color={status === "pending" ? "orange" : "green"}
-                    className="font-normal"
-                  >
-                    {status}
-                  </Typography>
-                </td>
-                <td>
-                  <Tooltip content="approve">
-                    <IconButton
-                      onClick={() => handleApproveRequest(_id, userEmail)}
-                      color="green"
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {agreements.map(
+              ({
+                userName,
+                userEmail,
+                floor_no,
+                block_name,
+                rent,
+                agreementDate,
+                apartment_no: room_no,
+                status,
+                userId,
+                _id,
+              }) => (
+                //   index
+                <tr
+                  key={userId}
+                  className="even:bg-blue-gray-50/50 overflow-hidden"
+                >
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
                     >
-                      <FaCheck />
-                    </IconButton>
-                  </Tooltip>
-                </td>
-                <td>
-                  <Tooltip content="reject">
-                    <IconButton color="red">
-                      <FaXmark className="font-bold text-xl" />
-                    </IconButton>
-                  </Tooltip>
-                </td>
-              </tr>
-            )
-          )}
-        </tbody>
-      </table>
+                      {userName}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {userEmail}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {floor_no}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {block_name}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {room_no}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      ${rent}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {new Date(agreementDate).toLocaleDateString()}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color={status === "pending" ? "orange" : "green"}
+                      className="font-normal"
+                    >
+                      {status}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Tooltip content="approve">
+                      <IconButton
+                        onClick={() => handleApproveRequest(_id, userEmail)}
+                        color="green"
+                      >
+                        <FaCheck />
+                      </IconButton>
+                    </Tooltip>
+                  </td>
+                  <td>
+                    <Tooltip content="reject">
+                      <IconButton color="red">
+                        <FaXmark className="font-bold text-xl" />
+                      </IconButton>
+                    </Tooltip>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </section>
     </div>
   );
 };
