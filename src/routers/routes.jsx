@@ -55,25 +55,45 @@ export const router = createBrowserRouter([
       },
       {
         path: "announcement",
-        element: <Announcement />,
+        element: (
+          <PrivateRoute>
+            <Announcement />
+          </PrivateRoute>
+        ),
       },
       // admin routes
       {
         path: "agreementRequest",
-        element: <AgreementRequest />,
+        element: (
+          <PrivateRoute>
+            <AgreementRequest />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageMembers",
-        element: <ManageMembers />,
+        element: (
+          <PrivateRoute>
+            <ManageMembers />
+          </PrivateRoute>
+        ),
       },
       {
         path: "makeAnnouncement",
-        element: <MakeAnnouncement />,
+        element: (
+          <PrivateRoute>
+            <MakeAnnouncement />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'manageCoupons',
-        element: <ManageCoupon />
-      }
+        path: "manageCoupons",
+        element: (
+          <PrivateRoute>
+            <ManageCoupon />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
