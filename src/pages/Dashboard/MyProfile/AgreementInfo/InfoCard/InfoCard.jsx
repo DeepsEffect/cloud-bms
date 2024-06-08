@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 const InfoCard = ({ title, desc }) => {
   const titleToColorClass = {
-    apartment: "bg-red-400",
+    Apartment: "bg-teal-400",
     floor: "bg-blue-400",
     block: "bg-purple-400",
-    room: "bg-green-400",
+    Room: "bg-indigo-400",
     "agreement date": "bg-orange-400",
+    "Checked Time": "bg-pink-400",
     default: "bg-green-400",
     "Available Rooms": "bg-orange-400",
     "Unavailable Rooms": "bg-red-400",
@@ -20,7 +21,7 @@ const InfoCard = ({ title, desc }) => {
           <p className="mr-0 text-white text-lg pl-5 capitalize">{title}</p>
         </div>
         <div className="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600"></div>
-        <p className="py-4 text-3xl ml-5">{desc}</p>
+        <p className="py-4 text-3xl ml-5">{desc ? desc : "null"}</p>
       </div>
     </div>
   );

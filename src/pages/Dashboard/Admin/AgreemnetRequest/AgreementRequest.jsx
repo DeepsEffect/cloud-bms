@@ -41,7 +41,7 @@ const AgreementRequest = () => {
         console.error(err);
       });
   };
-
+  // getting the agreements data
   const {
     data: agreements = [],
     isLoading,
@@ -78,7 +78,7 @@ const AgreementRequest = () => {
 
   return (
     <div>
-      <DashboardTitle title={'total agreements'} measure={agreements} />
+      <DashboardTitle title={"total agreements"} measure={agreements} />
       {/* table */}
       <section className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md h-full w-full overflow-scroll lg:overflow-hidden">
         <table className="w-full min-w-max table-auto text-left ">
@@ -100,7 +100,7 @@ const AgreementRequest = () => {
             </tr>
           </thead>
           <tbody>
-            {agreements.map(
+            {agreements?.map(
               ({
                 userName,
                 userEmail,

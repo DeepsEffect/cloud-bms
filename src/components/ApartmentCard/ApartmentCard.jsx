@@ -38,6 +38,7 @@ const ApartmentCard = ({ room }) => {
       floor_no: room.floor_no,
       block_name: room.block_name,
       apartment_no: room.apartment_no,
+      room_no: room.room_no,
       rent: room.rent,
       status: "pending",
       agreementDate: new Date(),

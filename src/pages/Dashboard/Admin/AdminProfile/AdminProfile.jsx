@@ -12,7 +12,7 @@ const AdminProfile = () => {
       return res.data;
     },
   });
-  
+
   // total users
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
@@ -32,7 +32,7 @@ const AdminProfile = () => {
   });
 
   return (
-    <div className="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 justify-center bg-gray-100 py-10 lg:p-14 overflow-auto">
       <InfoCard title={"total rooms"} desc={apartments?.length} />
       <InfoCard title={"Available Rooms"} desc={"45%"} />
       <InfoCard title={"Unavailable Rooms"} desc={"55%"} />
