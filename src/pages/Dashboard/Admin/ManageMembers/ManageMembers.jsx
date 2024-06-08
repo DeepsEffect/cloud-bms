@@ -47,7 +47,7 @@ const ManageMembers = () => {
   const TABLE_HEAD = ["Name", "Email", "Role", ""];
   return (
     <div>
-      <DashboardTitle title={"total user"} measure={members} />
+      <DashboardTitle title={"total members"} measure={members} />
       <section className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md h-full w-full overflow-scroll lg:overflow-hidden">
         <table className="w-full min-w-max table-auto text-left ">
           <thead>
