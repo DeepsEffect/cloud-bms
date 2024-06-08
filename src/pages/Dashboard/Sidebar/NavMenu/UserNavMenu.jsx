@@ -1,13 +1,21 @@
+/* eslint-disable react/prop-types */
 import { InboxIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import {
   Chip,
   ListItem,
   ListItemPrefix,
   ListItemSuffix,
+  Spinner,
 } from "@material-tailwind/react";
 import { NavLink } from "react-router-dom";
+import useAnnouncement from "../../../../hooks/useAnnouncement";
 
-const UserNavMenu = () => {
+const UserNavMenu = ({ isLoading, loading }) => {
+  const [announcements] = useAnnouncement();
+
+  if (isLoading || loading) {
+    return <Spinner />;
+  }
   return (
     <>
       <NavLink
@@ -41,7 +49,7 @@ const UserNavMenu = () => {
           Announcement
           <ListItemSuffix>
             <Chip
-              value="0"
+              value={announcements.length}
               size="sm"
               variant="ghost"
               color="blue-gray"

@@ -39,7 +39,7 @@ const Sidebar = () => {
       </Link>
 
       <List>
-        {role === "user" && <UserNavMenu />}
+        {role === "user" && <UserNavMenu isLoading={isLoading} loading={loading} />}
         {role === "member" && <MemberNavMenu />}
         {role === "admin" && <AdminNavMenu />}
         <hr />

@@ -1,7 +1,16 @@
+import DashboardTitle from "../Common/DashboardTitle/DashboardTitle";
+import { Spinner } from "@material-tailwind/react";
+import useAnnouncement from "../../../hooks/useAnnouncement";
+
 const Announcement = () => {
+  const [announcements, isLoading] = useAnnouncement()
+  console.log(announcements);
+  if (isLoading) {
+    return <Spinner />
+  }
   return (
     <div>
-      <h2 className="w-full border-red-500 border mx-auto flex justify-center mt-10">no announcement yet...</h2>
+      <DashboardTitle title={'total announcement'} measure={announcements} />
     </div>
   );
 };

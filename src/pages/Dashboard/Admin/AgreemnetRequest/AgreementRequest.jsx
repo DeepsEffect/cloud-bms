@@ -5,9 +5,11 @@ import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import DashboardTitle from "../../Common/DashboardTitle/DashboardTitle";
+import useAuth from "../../../../hooks/useAuth";
 
 const AgreementRequest = () => {
   const axiosSecure = useAxiosSecure();
+  const {loading} = useAuth()
   //   handle approve requests
 
   const handleApproveRequest = (_id, userEmail) => {
@@ -54,15 +56,7 @@ const AgreementRequest = () => {
       return data;
     },
   });
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (error) {
-    return <div className="text-red-500">Error: {error.message}</div>;
-  }
-  //   console.log(agreements);
+    // console.log(agreements);
   const TABLE_HEAD = [
     "Name",
     "Email",
@@ -76,6 +70,14 @@ const AgreementRequest = () => {
     "",
   ];
 
+  if (isLoading || loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <div className="text-red-500">Error: {error.message}</div>;
+  }
+
   return (
     <div>
       <DashboardTitle title={"total agreements"} measure={agreements} />
@@ -84,7 +86,7 @@ const AgreementRequest = () => {
         <table className="w-full min-w-max table-auto text-left ">
           <thead>
             <tr>
-              {TABLE_HEAD.map((head, idx) => (
+              {TABLE_HEAD?.map((head, idx) => (
                 <th
                   key={idx}
                   className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
