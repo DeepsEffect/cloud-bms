@@ -1,8 +1,11 @@
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const CouponModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
@@ -13,7 +16,20 @@ const CouponModal = () => {
     const code = form.code.value;
     const discount = form.discount.value;
     const desc = form.desc.value;
-    console.log(code, discount, desc);
+    const dataAdded = new Date();
+    const couponData = { code, discount, desc, dataAdded };
+    console.log(couponData);
+    // send coupon data to the backend
+    axiosSecure
+      .post("/coupon", couponData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Coupon added successfully");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     handleClose();
   };
 
