@@ -14,7 +14,7 @@ const Apartment = () => {
       return res.data;
     },
   });
-  console.log(apartments);
+  // console.log(apartments);
 
   const [active, setActive] = useState(1);
 

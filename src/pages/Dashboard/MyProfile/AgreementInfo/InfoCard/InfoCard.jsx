@@ -7,6 +7,10 @@ const InfoCard = ({ title, desc }) => {
     room: "bg-green-400",
     "agreement date": "bg-orange-400",
     default: "bg-green-400",
+    "Available Rooms": "bg-orange-400",
+    "Unavailable Rooms": "bg-red-400",
+    "Total Users": "bg-blue-400",
+    "Total Members": "bg-purple-400",
   };
   const colorClass = titleToColorClass[title] || titleToColorClass.default;
   return (

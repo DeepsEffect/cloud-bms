@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const ManageCoupon = () => {
-  const TABLE_HEAD = ["Coupons Code", "Discount", "Description", ""];
+  const TABLE_HEAD = ["Coupons Code", "Discount", "Description", "Action"];
 
   // get all the coupons
   const axiosSecure = useAxiosSecure();
