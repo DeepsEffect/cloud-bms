@@ -19,7 +19,7 @@ const ManageMembers = () => {
       return data;
     },
   });
-  console.log(members);
+  // console.log(members);
 
   // remove member
   const handleRemoveMember = (_id) => {

@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const CouponModal = () => {
+const CouponModal = ({ refetch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
 
@@ -18,13 +19,14 @@ const CouponModal = () => {
     const desc = form.desc.value;
     const dataAdded = new Date();
     const couponData = { code, discount, desc, dataAdded };
-    console.log(couponData);
+    // console.log(couponData);
     // send coupon data to the backend
     axiosSecure
       .post("/coupon", couponData)
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Coupon added successfully");
+          refetch();
         }
       })
       .catch((err) => {
@@ -36,7 +38,7 @@ const CouponModal = () => {
   return (
     <div>
       <Button onClick={handleOpen} className="bg-accent-600">
-        Open Dialog
+        Add Coupon
       </Button>
       {isOpen && (
         <div
