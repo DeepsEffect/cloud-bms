@@ -3,9 +3,11 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import InfoCard from "./InfoCard/InfoCard";
 import { Spinner } from "@material-tailwind/react";
 import useAuth from "../../../../hooks/useAuth";
+import useRole from "../../../../hooks/useRole";
 
 const AgreementInfo = () => {
   const { user } = useAuth();
+  const [role] = useRole();
   const axiosSecure = useAxiosSecure();
   // getting agreement by email
   const {
@@ -32,7 +34,9 @@ const AgreementInfo = () => {
       {/* apartment */}
       <InfoCard title={"Apartment"} desc={agreement?.apartment_no} />
       {/* room */}
-      <InfoCard title={"Room"} desc={agreement?.room_no} />
+      {role === "member" && (
+        <InfoCard title={"Room"} desc={agreement?.room_no} />
+      )}
       {/* floor */}
       <InfoCard title={"floor"} desc={agreement?.floor_no} />
       {/* block */}
@@ -46,12 +50,19 @@ const AgreementInfo = () => {
             : ""
         }
       />
-      <InfoCard
-        title={"Checked Time"}
-        desc={
-          agreement ? new Date(agreement.checkedTime).toLocaleDateString() : ""
-        }
-      />
+      {role === "member" && (
+        <>
+          {" "}
+          <InfoCard
+            title={"Checked Time"}
+            desc={
+              agreement
+                ? new Date(agreement.checkedTime).toLocaleDateString()
+                : ""
+            }
+          />
+        </>
+      )}
       {/* status */}
       <InfoCard title={"Status"} desc={agreement?.status} />
     </div>

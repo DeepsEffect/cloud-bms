@@ -14,7 +14,7 @@ const Apartment = () => {
       return res.data;
     },
   });
-  // console.log(apartments);
+  console.log(apartments);
 
   const [active, setActive] = useState(1);
 
@@ -49,7 +49,7 @@ const Apartment = () => {
 
       {/* cards */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-        {apartments.map((apartment) => (
+        {apartments?.map((apartment) => (
           <ApartmentCard key={apartment._id} room={apartment} />
         ))}
       </section>

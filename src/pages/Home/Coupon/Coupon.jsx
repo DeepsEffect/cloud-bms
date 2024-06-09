@@ -6,8 +6,6 @@ const Coupon = () => {
         <h2 className="max-w-lg mx-auto mb-4 rounded-lg text-xl">Summer sale offer!</h2>
         <h3 className=" text-xl lg:text-2xl font-semibold mb-4">
           20% off if you apply the coupon below!
-          <br />
-          using HDFC Credit Card
         </h3>
         <div className="flex items-center space-x-2 mb-6">
           <span
