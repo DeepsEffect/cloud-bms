@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Apartment = () => {
   const axiosPublic = useAxiosPublic();
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
   // get apartment sata
