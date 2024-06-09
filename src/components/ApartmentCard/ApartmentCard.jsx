@@ -63,7 +63,7 @@ const ApartmentCard = ({ room }) => {
   };
 
   return (
-    <Card className="mt-6 lg:w-96">
+    <Card className="mt-6 w-full lg:w-96">
       <CardHeader color="blue-gray" className="relative h-56">
         <img
           className="object-cover object-center h-full w-full"

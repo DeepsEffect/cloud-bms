@@ -123,7 +123,7 @@ const Nav = () => {
           to={"/"}
           className="mr-4 cursor-pointer py-1.5 font-heading font-bold text-xl"
         >
-          Cloud-MBS
+          Cloud-BMS
         </Link>
         <div className="hidden lg:block">
           <NavList />
