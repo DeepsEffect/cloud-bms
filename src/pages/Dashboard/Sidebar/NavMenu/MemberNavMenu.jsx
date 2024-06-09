@@ -11,8 +11,10 @@ import {
 } from "@material-tailwind/react";
 import { FaHistory } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useAnnouncement from "../../../../hooks/useAnnouncement";
 
 const MemberNavMenu = () => {
+  const [announcement] = useAnnouncement();
   return (
     <>
       <NavLink
@@ -78,7 +80,7 @@ const MemberNavMenu = () => {
           Announcement
           <ListItemSuffix>
             <Chip
-              value="0"
+              value={announcement?.length}
               size="sm"
               variant="ghost"
               color="blue-gray"

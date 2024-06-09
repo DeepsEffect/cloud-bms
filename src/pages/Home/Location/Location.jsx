@@ -38,7 +38,7 @@ const Location = () => {
           />
           <Marker position={[23.793858, 90.414648]}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              Definitely a real location
             </Popup>
           </Marker>
         </MapContainer>
