@@ -57,7 +57,7 @@ const Apartment = () => {
       </section>
       {isLoading ||
         (isFetching && (
-          <Spinner className="flex justify-center items-center border min-h-screen" />
+          <Spinner className="flex justify-center items-center min-h-screen" />
         ))}
       {/* cards */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
