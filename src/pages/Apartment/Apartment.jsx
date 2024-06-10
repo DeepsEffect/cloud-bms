@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ApartmentCard from "../../components/ApartmentCard/ApartmentCard";
 import { useState } from "react";
-// import { Spinner } from "@material-tailwind/react";
+import { Spinner } from "@material-tailwind/react";
 
 const Apartment = () => {
   const axiosPublic = useAxiosPublic();
@@ -12,8 +12,8 @@ const Apartment = () => {
   // get apartment sata
   const {
     data: apartments = [],
-    // isLoading,
-    // isFetching,
+    isLoading,
+    isFetching,
   } = useQuery({
     queryKey: ["apartments", currentPage, itemsPerPage],
     queryFn: async () => {
@@ -55,7 +55,10 @@ const Apartment = () => {
           views
         </p>
       </section>
-      {/* {isLoading || (isFetching && <Spinner className="flex justify-center items-center border min-h-screen"/>)} */}
+      {isLoading ||
+        (isFetching && (
+          <Spinner className="flex justify-center items-center border min-h-screen" />
+        ))}
       {/* cards */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
         {apartments?.map((apartment) => (
