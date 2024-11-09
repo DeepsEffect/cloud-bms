@@ -56,6 +56,7 @@ const AgreementInfo = () => {
               ? new Date(agreement.checkedTime).toLocaleDateString()
               : "not yet checked",
           },
+          { title: "Rent", desc: `$${agreement?.rent}` },
         ]
       : []),
   ];
