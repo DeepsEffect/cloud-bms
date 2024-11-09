@@ -13,7 +13,7 @@ const AdminNavMenu = () => {
         to={"myProfile"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
+            ? "text-text-50 font-semibold bg-primary-200 rounded-lg hover:bg-primary-600"
             : "font-semibold text-text-50"
         }
       >
@@ -29,7 +29,7 @@ const AdminNavMenu = () => {
         to={"manageMembers"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
+            ? "text-text-50 font-semibold bg-primary-200 rounded-lg hover:bg-primary-600"
             : "font-semibold text-text-50"
         }
       >
@@ -45,7 +45,7 @@ const AdminNavMenu = () => {
         to={"makeAnnouncement"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
+            ? "text-text-50 font-semibold bg-primary-200 rounded-lg hover:bg-primary-600"
             : "font-semibold text-text-50"
         }
       >
@@ -61,7 +61,7 @@ const AdminNavMenu = () => {
         to={"agreementRequest"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600 "
+            ? "text-text-50 font-semibold bg-primary-200 rounded-lg hover:bg-primary-600 "
             : "font-semibold text-text-50"
         }
       >
@@ -77,7 +77,7 @@ const AdminNavMenu = () => {
         to={"manageCoupons"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
+            ? "text-text-50 font-semibold bg-primary-200 rounded-lg hover:bg-primary-600"
             : "font-semibold text-text-50"
         }
       >

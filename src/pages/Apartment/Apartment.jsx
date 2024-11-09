@@ -10,11 +10,7 @@ const Apartment = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
   // get apartment sata
-  const {
-    data: apartments = [],
-    isLoading,
-    isFetching,
-  } = useQuery({
+  const { data: apartments = [], isLoading } = useQuery({
     queryKey: ["apartments", currentPage, itemsPerPage],
     queryFn: async () => {
       const res = await axiosPublic(
@@ -55,10 +51,9 @@ const Apartment = () => {
           views
         </p>
       </section>
-      {isLoading ||
-        (isFetching && (
-          <Spinner className="flex justify-center items-center min-h-screen" />
-        ))}
+      {isLoading && (
+        <Spinner className="flex justify-center items-center w-full" />
+      )}
       {/* cards */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
         {apartments?.map((apartment) => (

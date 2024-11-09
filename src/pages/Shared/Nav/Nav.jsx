@@ -48,7 +48,7 @@ function NavList() {
             <MenuHandler>
               <Avatar
                 variant="circular"
-                alt="tania andrew"
+                alt={user?.displayName}
                 className="cursor-pointer"
                 src={user.photoURL}
               />

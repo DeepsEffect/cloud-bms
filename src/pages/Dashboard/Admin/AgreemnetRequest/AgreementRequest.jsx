@@ -9,7 +9,7 @@ import useAuth from "../../../../hooks/useAuth";
 
 const AgreementRequest = () => {
   const axiosSecure = useAxiosSecure();
-  const {loading} = useAuth()
+  const { loading } = useAuth();
   //   handle approve requests
 
   const handleApproveRequest = (_id, userEmail) => {
@@ -56,7 +56,7 @@ const AgreementRequest = () => {
       return data;
     },
   });
-    // console.log(agreements);
+  // console.log(agreements);
   const TABLE_HEAD = [
     "Name",
     "Email",
@@ -102,96 +102,96 @@ const AgreementRequest = () => {
             </tr>
           </thead>
           <tbody>
-            {agreements?.map(
-              ({
-                userName,
-                userEmail,
-                floor_no,
-                block_name,
-                rent,
-                agreementDate,
-                apartment_no: room_no,
-                status,
-                _id,
-              }) => (
-                //   index
-                <tr
-                  key={_id}
-                  className="even:bg-blue-gray-50/50 overflow-hidden"
-                >
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {userName}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {userEmail}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {floor_no}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {block_name}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {room_no}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      ${rent}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {new Date(agreementDate).toLocaleDateString()}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div
-                      className={`font-normal ${
-                        status === "pending"
-                          ? "text-orange-600"
-                          : status === "approved"
-                          ? "text-green-600"
-                          : status === "rejected"
-                          ? "text-red-600"
-                          : ""
-                      }`}
-                    >
-                      {status}
-                    </div>
-                  </td>
-                  <td>
-                    <Tooltip content="approve">
-                      <IconButton
-                        onClick={() => handleApproveRequest(_id, userEmail)}
-                        color="green"
+            {Array.isArray(agreements) &&
+              agreements.map(
+                ({
+                  userName,
+                  userEmail,
+                  floor_no,
+                  block_name,
+                  rent,
+                  agreementDate,
+                  apartment_no: room_no,
+                  status,
+                  _id,
+                }) => (
+                  <tr
+                    key={_id}
+                    className="even:bg-blue-gray-50/50 overflow-hidden"
+                  >
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {userName}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {userEmail}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {floor_no}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {block_name}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {room_no}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        ${rent}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {new Date(agreementDate).toLocaleDateString()}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div
+                        className={`font-normal ${
+                          status === "pending"
+                            ? "text-orange-600"
+                            : status === "approved"
+                            ? "text-green-600"
+                            : status === "rejected"
+                            ? "text-red-600"
+                            : ""
+                        }`}
                       >
-                        <FaCheck />
-                      </IconButton>
-                    </Tooltip>
-                  </td>
-                  <td>
-                    <Tooltip content="reject">
-                      <IconButton
-                        onClick={() => handleRejectRequest(_id)}
-                        color="red"
-                      >
-                        <FaXmark className="font-bold text-xl" />
-                      </IconButton>
-                    </Tooltip>
-                  </td>
-                </tr>
-              )
-            )}
+                        {status}
+                      </div>
+                    </td>
+                    <td>
+                      <Tooltip content="approve">
+                        <IconButton
+                          onClick={() => handleApproveRequest(_id, userEmail)}
+                          color="green"
+                        >
+                          <FaCheck />
+                        </IconButton>
+                      </Tooltip>
+                    </td>
+                    <td>
+                      <Tooltip content="reject">
+                        <IconButton
+                          onClick={() => handleRejectRequest(_id)}
+                          color="red"
+                        >
+                          <FaXmark className="font-bold text-xl" />
+                        </IconButton>
+                      </Tooltip>
+                    </td>
+                  </tr>
+                )
+              )}
           </tbody>
         </table>
       </section>

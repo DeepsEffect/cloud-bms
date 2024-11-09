@@ -9,7 +9,8 @@ const AgreementInfo = () => {
   const { user } = useAuth();
   const [role] = useRole();
   const axiosSecure = useAxiosSecure();
-  // getting agreement by email
+
+  // Fetching agreement by email
   const {
     data: agreement = [],
     isLoading,
@@ -21,50 +22,49 @@ const AgreementInfo = () => {
       return data;
     },
   });
+
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="flex justify-center items-center h-32">
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {
     return <div className="text-red-500">Error: {error.message}</div>;
   }
 
+  // Define the data for InfoCard
+  const cardData = [
+    { title: "Apartment", desc: agreement?.apartment_no },
+    { title: "floor", desc: agreement?.floor_no },
+    { title: "block", desc: agreement?.block_name },
+    {
+      title: "agreement date",
+      desc: agreement
+        ? new Date(agreement.agreementDate).toLocaleDateString()
+        : "",
+    },
+    { title: "Status", desc: agreement?.status },
+    ...(role === "member"
+      ? [
+          { title: "Room", desc: agreement?.room_no },
+          {
+            title: "Checked Time",
+            desc: agreement?.checkedTime
+              ? new Date(agreement.checkedTime).toLocaleDateString()
+              : "not yet checked",
+          },
+        ]
+      : []),
+  ];
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 justify-center bg-gray-100 py-10 lg:p-14 overflow-auto">
-      {/* apartment */}
-      <InfoCard title={"Apartment"} desc={agreement?.apartment_no} />
-      {/* room */}
-      {role === "member" && (
-        <InfoCard title={"Room"} desc={agreement?.room_no} />
-      )}
-      {/* floor */}
-      <InfoCard title={"floor"} desc={agreement?.floor_no} />
-      {/* block */}
-      <InfoCard title={"block"} desc={agreement?.block_name} />
-      {/* date */}
-      <InfoCard
-        title={"agreement date"}
-        desc={
-          agreement
-            ? new Date(agreement.agreementDate).toLocaleDateString()
-            : ""
-        }
-      />
-      {role === "member" && (
-        <>
-          {" "}
-          <InfoCard
-            title={"Checked Time"}
-            desc={
-              agreement
-                ? new Date(agreement.checkedTime).toLocaleDateString()
-                : ""
-            }
-          />
-        </>
-      )}
-      {/* status */}
-      <InfoCard title={"Status"} desc={agreement?.status} />
+    <div className="flex overflow-x-auto gap-4 justify-center flex-wrap bg-blue-gray-50 p-4">
+      {cardData.map((card, index) => (
+        <InfoCard key={index} title={card.title} desc={card.desc} />
+      ))}
     </div>
   );
 };

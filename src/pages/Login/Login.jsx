@@ -18,6 +18,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.error(err);
+        toast.error("Google Sign-In failed");
       });
   };
 
@@ -26,87 +27,82 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
-    loginUser(email, password);
+
     loginUser(email, password)
       .then((userCredential) => {
-        // console.log(userCredential.user);
         toast.success(`"${userCredential.user.displayName}" Login Successful`);
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         console.error(error);
-        toast.error(error.code);
+        toast.error(error.message || "Login failed");
       });
   };
 
   return (
-    <div className="flex items-center mt-10 overflow-hidden px-2">
-      {/* <!-- Login --> */}
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
         onSubmit={handleLogin}
-        className="relative flex w-96 flex-col space-y-5 rounded-lg border bg-white px-5 py-10 shadow-xl sm:mx-auto"
+        className="relative flex flex-col space-y-6 rounded-lg border bg-white p-10 shadow-xl w-96"
       >
-        <div className="-z-10 absolute top-4 left-1/2 h-full w-5/6 -translate-x-1/2 rounded-lg bg-primary-600 sm:-right-10 sm:top-auto sm:left-auto sm:w-full sm:translate-x-0"></div>
-        <div className="mx-auto mb-2 space-y-3">
-          <h1 className="text-center text-3xl font-bold text-gray-700">
-            Sign in
-          </h1>
+        <div className="-z-10 absolute top-4 left-1/2 w-5/6 -translate-x-1/2 rounded-lg bg-primary-600 sm:-right-10 sm:top-auto sm:left-auto sm:w-full sm:translate-x-0"></div>
+        <div className="mb-4 text-center">
+          <h1 className="text-3xl font-semibold text-gray-700">Sign in</h1>
           <p className="text-gray-500">Sign in to access your account</p>
         </div>
+
+        {/* Google Sign-In Button */}
         <button
           onClick={handleSignInWithGoogle}
-          className="-2 mt-8 flex items-center justify-center rounded-md border px-4 py-1 outline-none ring-gray-400 ring-offset-2 transition hover:border-transparent hover:bg-black hover:text-white focus:ring-2"
+          className="flex items-center justify-center w-full px-4 py-2 text-lg font-semibold text-white bg-gray-800 rounded-md hover:bg-black transition"
         >
-          <FcGoogle className="mr-2" />
+          <FcGoogle className="mr-3" />
           Get started with Google
         </button>
-        <div>
-          <div className="relative mt-2 w-full">
-            <input
-              type="email"
-              name="email"
-              className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pt-4 pb-2.5 text-sm text-gray-900 focus:border-primary-600 focus:outline-none focus:ring-0"
-              placeholder=" Enter your email"
-            />
-          </div>
+
+        {/* Email Input */}
+        <div className="relative mt-4 w-full">
+          <input
+            type="email"
+            name="email"
+            className="peer block w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2.5 text-gray-900 text-sm focus:border-primary-600 focus:outline-none focus:ring-0"
+            placeholder="Enter your email"
+            required
+          />
         </div>
 
-        <div>
-          <div className="relative mt-2 w-full">
-            <input
-              type="password"
-              name="password"
-              className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pt-4 pb-2.5 text-sm text-gray-900 focus:border-primary-600 focus:outline-none focus:ring-0"
-              placeholder="Enter Your Password "
-            />
-          </div>
+        {/* Password Input */}
+        <div className="relative mt-4 w-full">
+          <input
+            type="password"
+            name="password"
+            className="peer block w-full rounded-lg border border-gray-300 bg-transparent px-3 py-2.5 text-gray-900 text-sm focus:border-primary-600 focus:outline-none focus:ring-0"
+            placeholder="Enter your password"
+            required
+          />
         </div>
-        <div className="flex w-full items-center">
+
+        {/* Submit Button */}
+        <div className="flex w-full">
           <button
             type="submit"
-            className="shrink-0 inline-block w-36 rounded-lg bg-primary-600 py-3 font-bold text-white"
+            className="w-full py-3 font-bold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition"
           >
             Login
           </button>
-          <a
-            className="w-full text-center text-sm font-medium text-gray-600 hover:underline"
-            href="#"
-          >
-            Forgot your password?
-          </a>
         </div>
+
+        {/* Sign-Up Link */}
         <p className="text-center text-gray-600">
-          Don&apos;t have an account?
+          Don&apos;t have an account?{" "}
           <Link
-            to={"/signUp"}
-            className="whitespace-nowrap font-semibold text-gray-900 hover:underline"
+            to="/signUp"
+            className="font-semibold text-primary-600 hover:underline"
           >
             Sign up
           </Link>
         </p>
       </form>
-      {/* <!-- /Login --> */}
     </div>
   );
 };

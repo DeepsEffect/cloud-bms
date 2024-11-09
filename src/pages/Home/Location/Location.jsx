@@ -27,7 +27,7 @@ const Location = () => {
 
         {/* map section */}
         <MapContainer
-          center={[23.793858, 90.414648]}
+          center={[40.754932, -73.984016]}
           zoom={13}
           scrollWheelZoom={false}
           className="h-[400px] border md:w-[40%]"
@@ -36,10 +36,8 @@ const Location = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[23.793858, 90.414648]}>
-            <Popup>
-              Definitely a real location
-            </Popup>
+          <Marker position={[40.754932, -73.984016]}>
+            <Popup>Definitely a real location</Popup>
           </Marker>
         </MapContainer>
       </div>

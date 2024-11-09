@@ -8,33 +8,45 @@ import AgreementInfo from "./AgreementInfo/AgreementInfo";
 const MyProfile = () => {
   const [role] = useRole();
   const { user, loading } = useAuth();
+
   if (loading) {
-    return <Spinner />;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner />
+      </div>
+    );
   }
+
   return (
-    <div>
-      {/* profile info */}
-      <section className="lg:h-60 bg-accent-400 p-4 flex flex-col lg:flex-row gap-4">
+    <div className="space-y-8">
+      {/* Profile Info */}
+      <section className="lg:h-60 bg-accent-400 p-4 flex flex-col lg:flex-row gap-6 items-center lg:items-start rounded-lg shadow-md">
         <img
-          className="max-h-40 lg:max-h-full lg:w-64 object-cover"
-          src={user?.photoURL}
-          alt="user"
+          className="h-40 w-40 lg:w-64 lg:h-full object-cover rounded-md"
+          src={user?.photoURL || "/path/to/default-image.jpg"} // Fallback image if user has no photo
+          alt="user profile"
         />
         <div>
-          <h2 className="font-bold text-text-50 text-2xl font-heading">
+          <h2 className="text-2xl font-bold text-text-50 font-heading">
             {user?.displayName}
-            <span>
-              <i>({role})</i>
-            </span>
+            {role && (
+              <span className="text-lg text-blue-gray-500 italic ml-2">
+                ({role})
+              </span>
+            )}
           </h2>
-          <h2 className="font-bold text-text-50 text-xl">{user?.email}</h2>
+          <p className="text-xl text-text-50">{user?.email}</p>
         </div>
       </section>
-      {role === "user" || role === "member" ? (
-        <AgreementInfo />
-      ) : (
-        <AdminProfile />
-      )}
+
+      {/* Role-based Component Rendering */}
+      <section>
+        {role === "user" || role === "member" ? (
+          <AgreementInfo />
+        ) : (
+          <AdminProfile />
+        )}
+      </section>
     </div>
   );
 };

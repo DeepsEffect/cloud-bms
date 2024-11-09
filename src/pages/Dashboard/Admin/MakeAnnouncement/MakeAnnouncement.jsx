@@ -33,7 +33,7 @@ const MakeAnnouncement = () => {
       <DashboardTitle title={"add an announcement"} />
       <form
         onSubmit={handleSubmitAnnouncement}
-        className="lg:w-[400px] mx-auto mt-10 space-y-10"
+        className="lg:w-[400px] mx-auto mt-10 space-y-10 p-4"
       >
         <Input
           label="Title"

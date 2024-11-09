@@ -22,7 +22,7 @@ const UserNavMenu = ({ isLoading, loading }) => {
         to={"myProfile"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
+            ? "text-text-50 font-semibold bg-primary-200 rounded-lg hover:bg-primary-600"
             : "font-semibold text-text-50"
         }
       >
@@ -38,7 +38,7 @@ const UserNavMenu = ({ isLoading, loading }) => {
         to={"announcement"}
         className={({ isActive }) =>
           isActive
-            ? "text-text-50 font-semibold bg-primary-500 rounded-lg hover:bg-primary-600"
+            ? "text-text-50 font-semibold bg-primary-200 rounded-lg hover:bg-primary-600"
             : "font-semibold text-text-50"
         }
       >

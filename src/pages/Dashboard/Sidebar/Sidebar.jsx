@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Card,
   List,
@@ -7,19 +8,18 @@ import {
   Spinner,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { FaPowerOff, FaTimes } from "react-icons/fa";
 import UserNavMenu from "./NavMenu/UserNavMenu";
 import MemberNavMenu from "./NavMenu/MemberNavMenu";
 import AdminNavMenu from "./NavMenu/AdminNavMenu";
-import { FaPowerOff } from "react-icons/fa";
 import useRole from "../../../hooks/useRole";
 import { useEffect } from "react";
 import useAuth from "../../../hooks/useAuth";
 
-const Sidebar = () => {
+const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   const [role, isLoading, refetch] = useRole();
   const { user, loading, logOut } = useAuth();
-  console.log(role);
-  // refetching when user changes
+
   useEffect(() => {
     if (user) {
       refetch();
@@ -31,26 +31,49 @@ const Sidebar = () => {
   }
 
   return (
-    <Card className="lg:h-[calc(100vh-2rem)] w-full max-w-[20rem] lg:p-4 shadow-xl shadow-blue-gray-900/5">
-      <Link to={"/"} className="mb-2 p-4">
-        <Button size="sm" className="font-bold bg-transparent text-text-50">
-          Home
-        </Button>
-      </Link>
+    <>
+      {/* Sidebar overlay for mobile */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 lg:hidden bg-black bg-opacity-50"
+          onClick={toggleSidebar}
+        ></div>
+      )}
 
-      <List>
-        {role === "user" && <UserNavMenu isLoading={isLoading} loading={loading} />}
-        {role === "member" && <MemberNavMenu />}
-        {role === "admin" && <AdminNavMenu />}
-        <hr />
-        <ListItem onClick={logOut} className="font-bold">
-          <ListItemPrefix>
-            <FaPowerOff className="h-5 w-5" />
-          </ListItemPrefix>
-          Log Out
-        </ListItem>
-      </List>
-    </Card>
+      <Card
+        className={`fixed top-0 left-0 z-50 h-screen w-64 lg:w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 transition-transform transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:flex lg:h-[calc(100vh-2rem)] overflow-y-auto bg-white`}
+      >
+        <div className="flex justify-between items-center mb-2">
+          <Link to={"/"} className="p-4">
+            <Button size="sm" className="font-bold bg-transparent text-text-50">
+              Home
+            </Button>
+          </Link>
+          {/* Close icon for mobile */}
+          <FaTimes
+            className="text-xl cursor-pointer lg:hidden"
+            onClick={toggleSidebar}
+          />
+        </div>
+
+        <List>
+          {role === "user" && (
+            <UserNavMenu isLoading={isLoading} loading={loading} />
+          )}
+          {role === "member" && <MemberNavMenu />}
+          {role === "admin" && <AdminNavMenu />}
+          <hr />
+          <ListItem onClick={logOut} className="font-bold">
+            <ListItemPrefix>
+              <FaPowerOff className="h-5 w-5" />
+            </ListItemPrefix>
+            Log Out
+          </ListItem>
+        </List>
+      </Card>
+    </>
   );
 };
 
