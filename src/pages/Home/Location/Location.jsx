@@ -1,6 +1,15 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 const Location = () => {
+  // Set up the default icon for markers
+  const DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+  });
+  L.Marker.prototype.options.icon = DefaultIcon;
   return (
     <header className="bg-white lg:mt-10">
       <div className="container flex justify-evenly px-6 py-4 mx-auto space-y-6 flex-col md:h-128 md:py-16 lg:flex-row-reverse md:items-center md:space-x-6">
