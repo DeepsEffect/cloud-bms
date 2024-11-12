@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import DashboardTitle from "../../Common/DashboardTitle/DashboardTitle";
 import useAuth from "../../../../hooks/useAuth";
+import { Spinner } from "@material-tailwind/react";
 
 const PaymentHistory = () => {
   const [payments, setPayments] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   useEffect(() => {
+    setLoading(true);
     const fetchPayments = async () => {
       try {
         const res = await axiosSecure("/payments");
         setPayments(res.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -23,8 +27,9 @@ const PaymentHistory = () => {
   const usersPayment = payments.filter(
     (payment) => payment?.email === user?.email
   );
-  //   console.log(payments);
-  //   console.log(usersPayment);
+  // console.log(payments);
+  // console.log(usersPayment);
+
   const TABLE_HEAD = ["Email", "Amount", "Transactor Id", "Date", "Status"];
   return (
     <div>
@@ -53,39 +58,43 @@ const PaymentHistory = () => {
                 ))}
               </tr>
             </thead>
-            <tbody>
-              {usersPayment.map(({ email, transactionId, date, price }) => (
-                //   index
-                <tr
-                  key={transactionId}
-                  className="even:bg-blue-gray-50/50 overflow-hidden"
-                >
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {email}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      ${price}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {transactionId}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div color="blue-gray" className="font-normal">
-                      {new Date(date).toLocaleDateString()}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div className="font-normal text-green-400">paid</div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {loading ? (
+              <Spinner />
+            ) : (
+              <tbody>
+                {usersPayment.map(({ email, transactionId, date, price }) => (
+                  //   index
+                  <tr
+                    key={transactionId}
+                    className="even:bg-blue-gray-50/50 overflow-hidden"
+                  >
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {email}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        ${price}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {transactionId}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div color="blue-gray" className="font-normal">
+                        {new Date(date).toLocaleDateString()}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="font-normal text-green-400">paid</div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
         </section>
       )}
