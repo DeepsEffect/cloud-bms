@@ -8,11 +8,15 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
 const MakePayment = () => {
-  const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+  const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   // Fetching agreement by email
-  const { data: agreement = [], isLoading } = useQuery({
+  const {
+    data: agreement = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["agreement"],
     queryFn: async () => {
       const { data } = await axiosSecure(`/agreements/${user.email}`);
@@ -30,11 +34,18 @@ const MakePayment = () => {
   return (
     <div>
       <DashboardTitle title={"make payment"} />
-      <h2 className="text-center font-heading text-xl mt-10 font-bold">
-        Rent Due: ${agreement?.rent}
-      </h2>
+      {agreement?.rent === 0 ? (
+        <h2 className="text-center text-green-400 font-heading text-xl mt-10 font-bold">
+          No Rent Due
+        </h2>
+      ) : (
+        <h2 className="text-center text-red-400 font-heading text-xl mt-10 font-bold">
+          Rent Due: ${agreement?.rent}
+        </h2>
+      )}
+
       <Elements stripe={stripePromise}>
-        <CheckoutForm />
+        <CheckoutForm refetch={refetch} price={agreement?.rent} />
       </Elements>
     </div>
   );

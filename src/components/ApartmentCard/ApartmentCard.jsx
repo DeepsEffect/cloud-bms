@@ -44,7 +44,7 @@ const ApartmentCard = ({ room }) => {
       .post("/agreement", agreementData)
       .then((res) => {
         if (res.data.insertedId) {
-          toast.success("Agreement added successfully");
+          toast.success("Agreement successful! Please wait for Admin response");
         }
       })
       .catch((err) => {
