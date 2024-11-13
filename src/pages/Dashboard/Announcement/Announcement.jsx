@@ -18,7 +18,7 @@ const Announcement = () => {
         {announcements.map((announcement) => (
           <div
             key={announcement._id}
-            className="relative bg-gradient-to-br from-purple-600 to-indigo-600 p-8 rounded-lg shadow-lg transform transition duration-300 hover:scale-105"
+            className="relative bg-gradient-to-br from-primary-600 to-accent-600 p-8 rounded-lg shadow-lg transform transition duration-300 hover:scale-105"
           >
             <div className="absolute top-4 right-4 text-white opacity-75">
               <FaBullhorn className="text-3xl" />
