@@ -1,5 +1,5 @@
-#### Admin Email: cherryblossom@gmail.com
-#### Admin Password: cherry
+#### Admin Email: `cherryblossom@gmail.com`
+#### Admin Password: `cherry`
 
 # [Cloud-BMS](https://cloud-bms.netlify.app)
 
@@ -14,7 +14,7 @@ Cloud-BMS is a full-stack Building Management System (BMS) web application desig
 
 ### Member Dashboard
 - Upon admin approval, the user becomes a member
-- View apartment info and other stats
+- View apartment details and other statistics
 - Make secure rent payments via an integrated payment gateway
 - View announcements
 
