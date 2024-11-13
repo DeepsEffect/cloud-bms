@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="absolute -top-10 left-1/2 h-16 w-16 -translate-x-1/2 rounded-xl border-4 border-sky-500 bg-white p-2">
         <img
           className="h-full w-full rounded-lg object-cover"
-          src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=80&w=2079&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="logo.png"
           alt="cloud"
         />
       </div>
