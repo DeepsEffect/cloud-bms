@@ -44,7 +44,7 @@ const SignUp = () => {
             toast.success(
               `"${userCredential.user.displayName}" Registered Successfully`
             );
-            navigate("/");
+            window.location.href = "/";
           })
           .catch((error) => {
             console.error("Error updating profile:", error.firebase);

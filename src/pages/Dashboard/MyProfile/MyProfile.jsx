@@ -41,11 +41,8 @@ const MyProfile = () => {
 
       {/* Role-based Component Rendering */}
       <section>
-        {role === "user" || role === "member" ? (
-          <AgreementInfo />
-        ) : (
-          <AdminProfile />
-        )}
+        {role && <AgreementInfo />}
+        {role === "admin" && <AdminProfile />}
       </section>
     </div>
   );
