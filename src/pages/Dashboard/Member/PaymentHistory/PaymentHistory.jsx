@@ -34,7 +34,7 @@ const PaymentHistory = () => {
   return (
     <div>
       <DashboardTitle title={"payment history"} />
-      {usersPayment === 0 ? (
+      {usersPayment.length === 0 ? (
         <h2 className="text-xl font-heading text-center mt-10">
           There is no history yet...
         </h2>
