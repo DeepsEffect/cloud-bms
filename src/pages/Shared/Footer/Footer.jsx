@@ -10,7 +10,7 @@ const Footer = () => {
       </div>
       <nav
         aria-label="Footer Navigation"
-        className="mx-auto mb-10 flex max-w-lg flex-col gap-10 text-center sm:flex-row sm:text-left"
+        className="mx-auto mb-10 flex max-w-lg flex-col gap-10 text-center sm:flex-row sm:text-left justify-center"
       >
         <a href="#" className="font-medium text-white">
           Demo
