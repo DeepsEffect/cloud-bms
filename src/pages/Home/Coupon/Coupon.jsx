@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Coupon = () => {
   const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [coupons, setCoupons] = useState([]);
   const axiosSecure = useAxiosSecure();
 
@@ -16,10 +17,12 @@ const Coupon = () => {
 
   // fetch coupons from db
   useEffect(() => {
+    setLoading(true);
     const fetchCoupons = async () => {
       const res = await axiosSecure("/coupons");
       if (res.status === 200) {
         setCoupons(res.data);
+        setLoading(false);
       }
     };
     fetchCoupons();
@@ -39,7 +42,7 @@ const Coupon = () => {
           Winter&apos;s cold offer!
         </h2>
         <h3 className=" text-xl lg:text-2xl font-semibold mb-4">
-          {latestCoupon?.desc}
+          {loading ? <p>...</p> : <p>{latestCoupon?.desc}</p>}
         </h3>
         <div className="flex items-center space-x-2 mb-6">
           <span

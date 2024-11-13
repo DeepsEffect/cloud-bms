@@ -20,7 +20,7 @@ const MyProfile = () => {
   return (
     <div className="space-y-8">
       {/* Profile Info */}
-      <section className="lg:h-60 bg-accent-600 p-4 flex flex-col lg:flex-row gap-6 items-center lg:items-start rounded-lg shadow-md">
+      <section className="lg:h-60 bg-accent-600 p-4 flex flex-col lg:flex-row gap-6 items-center lg:items-start shadow-md">
         <img
           className="h-40 w-40 lg:w-64 lg:h-full object-cover rounded-md"
           src={user?.photoURL || "/path/to/default-image.jpg"} // Fallback image if user has no photo
