@@ -58,20 +58,25 @@ Cloud-BMS is a full-stack Building Management System (BMS) web application desig
    ```bash
    git clone https://github.com/DeepsEffect/cloud-bms.git
    ```
-
-2. **Navigate to project directory**
+   
+2. **Optionally, clone the server-side repository for the backend:**
+   ```bash
+   git clone https://github.com/DeepsEffect/cloud-bms-server.git
+   ```
+   
+3. **Navigate to project directory**
 
    ```bash
    cd cloud-bms
    ```
 
-3. **Install dependencies**
+4. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-4. **Set up environment variables**
+5. **Set up environment variables**
    Create a `.env.local` file in the root directory:
    ```bash
    VITE_APIKEY=<your-firebase-api-key>
@@ -84,7 +89,7 @@ Cloud-BMS is a full-stack Building Management System (BMS) web application desig
    VITE_URL='https://cloud-bms-server.vercel.app'
    ```
 
-5. ** Start development server**
+6. **Start development server**
    ```bash
       npm run dev
    ```
