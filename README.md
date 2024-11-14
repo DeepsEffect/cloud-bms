@@ -1,35 +1,105 @@
-Live-Site: [Cloud-BMS](https://could-mbs.web.app/)
-Admin Email: cherryblossom@gmail.com
-Admin Password: cherry
+#### Admin Email: `cherryblossom@gmail.com`
+#### Admin Password: `cherry`
 
-## Features
+# [Cloud-BMS](https://cloud-bms.netlify.app)
 
-1. **Responsive Design**
-   - Ensures a seamless user experience across all devices, including desktops, tablets, and mobile phones.
+Cloud-BMS is a full-stack Building Management System (BMS) web application designed to simplify the management of apartments, agreements, payments, and more. It features a role-based dashboard system, providing different functionalities for users, members, and admins.
 
-2. **User Authentication**
-   - Utilizes Firebase Authentication for secure user login and registration.
+## ✨ Features
 
-3. **Role-Based Dashboards**
-   - Distinct dashboards for members, users, and admins, each with customized features and permissions.
+### User Dashboard
+- View available apartments
+- Apply for an apartment agreements
+- View announcements
 
-4. **Data Fetching with TanStack Query**
-   - Efficient data fetching and state management using TanStack Query (React Query) for a seamless user experience.
+### Member Dashboard
+- Upon admin approval, the user becomes a member
+- View apartment details and other statistics
+- Make secure rent payments via an integrated payment gateway
+- View announcements
 
-5. **Pagination**
-   - Smooth pagination for large data sets, enhancing user experience and data accessibility.
+### Admin Dashboard
+- Approve or reject apartment agreements
+- View overall apartment statistics
+- View and manage all members
+- Create and manage announcements
+- Update and manage coupons and discounts
 
-6. **Payment System**
-   - Integrated payment gateway for secure transactions, allowing users to make and track payments.
+## 🛠️ Tech Stack
 
-7. **Payment History**
-   - Detailed payment history and transaction records for users to view and manage their payments.
+### Frontend
+- react
+- react-dom
+- react-router-dom
+- react-icons
+- react-leaflet
+- react-hot-toast
+- react-copy-to-clipboard
+- swiper
+- @heroicons/react
+- @material-tailwind/react
+- @stripe/react-stripe-js
+- @stripe/stripe-js
+- @tanstack/react-query
+- axios
+- firebase
 
-8. **Notifications**
-   - Real-time notifications and toast messages to keep users informed of important updates and actions.
+### Backend
+- cors
+- dotenv
+- express
+- MongoDB
+- stripe
 
-9. **Error Handling**
-   - Robust error handling mechanisms for improved debugging and user experience.
+## 🚀 Installation & Setup
 
-10. **Accessibility**
-    - Ensures the website is accessible to all users, including those with disabilities, following WCAG guidelines.
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/DeepsEffect/cloud-bms.git
+   ```
+   
+2. **Optionally, clone the server-side repository for the backend:**
+   ```bash
+   git clone https://github.com/DeepsEffect/cloud-bms-server.git
+   ```
+   
+3. **Navigate to project directory**
+
+   ```bash
+   cd cloud-bms
+   ```
+
+4. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+5. **Set up environment variables**
+   Create a `.env.local` file in the root directory:
+   ```bash
+   VITE_APIKEY=<your-firebase-api-key>
+   VITE_AUTHDOMAIN=<your-firebase-auth-domain>
+   VITE_PROJECTID=<your-firebase-project-id>
+   VITE_STORAGEBUCKET=<your-firebase-storage-bucket>
+   VITE_MESSAGINGSENDERID=<your-firebase-sender-id>
+   VITE_APPID=<your-firebase-app-id>
+   VITE_STRIPE_PUBLISHABLE_KEY=<your-stripe-publishable-key>
+   VITE_URL='https://cloud-bms-server.vercel.app'
+   ```
+
+6. **Start development server**
+   ```bash
+      npm run dev
+   ```
+   Visit [http://localhost:5173](http://localhost:5173) to see the app
+
+## 📞 Contact
+
+Have questions or suggestions? Reach out through:
+
+- [GitHub](https://github.com/DeepsEffect)
+- [Twitter](https://x.com/JalalAhmed7845)
+- [LinkedIn](https://www.linkedin.com/in/jalal-ahmed-dev)
+
