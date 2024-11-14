@@ -36,11 +36,10 @@ Cloud-BMS is a full-stack Building Management System (BMS) web application desig
 - react-hot-toast
 - react-copy-to-clipboard
 - swiper
-- @heroicons/react
-- @material-tailwind/react
-- @stripe/react-stripe-js
-- @stripe/stripe-js
-- @tanstack/react-query
+- heroicons
+- material-tailwind
+- stripe
+- tanstack/react-query
 - axios
 - firebase
 
