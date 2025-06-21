@@ -94,11 +94,3 @@ Cloud-BMS is a full-stack Building Management System (BMS) web application desig
    ```
    Visit [http://localhost:5173](http://localhost:5173) to see the app
 
-## 📞 Contact
-
-Have questions or suggestions? Reach out through:
-
-- [GitHub](https://github.com/DeepsEffect)
-- [Twitter](https://x.com/JalalAhmed7845)
-- [LinkedIn](https://www.linkedin.com/in/jalal-ahmed-dev)
-
